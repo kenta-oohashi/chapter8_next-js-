@@ -1,0 +1,52 @@
+.post-list-container {
+  padding-top : 20px;
+  width: 50%;
+  margin: 0 auto;
+  
+}
+
+.post-card {
+  border :1px solid #e0e0e0;
+  padding: 20px;
+  margin: 24px 0;
+  overflow: hidden;
+  display: -webkit-box;-webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; 
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: black;
+}
+
+.post-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.create-data {
+    font-size: 12px;
+    color: gray;
+}
+
+.post-categories {
+    margin:0 90px 0 0;
+}
+
+.post-tag {
+  padding:6px;
+  margin: 0 6px;
+  color: rgb(14, 88, 149);
+  border: 1px solid rgb(14, 88, 149);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.post-title {
+  font-weight: 300;
+  font-size: 22px;
+}
+
+.post-content {
+  font-weight: 300;
+}
