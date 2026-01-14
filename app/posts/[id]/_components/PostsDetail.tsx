@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import style from './PostsDetail.module.css';
 import { useEffect, useState } from "react";
-import type { Post } from '../../_types/Post';
+import type { Post } from '../../../_types/Post';
 
 export default function PostsDetail() {
   
