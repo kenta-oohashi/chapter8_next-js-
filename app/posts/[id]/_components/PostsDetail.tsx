@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import style from './PostsDetail.module.css';
 import { useEffect, useState } from "react";
 import type { Post } from '../../../_types/Post';
+import Image from "next/image";
 
 export default function PostsDetail() {
   
@@ -15,10 +16,13 @@ export default function PostsDetail() {
     useEffect(() => {
       const fetcher = async () => {
         const res = await fetch(
-          `https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`
-        );
+          `https://n9u0id58lf.microcms.io/api/v1/posts/${id}?depth=1`,{
+            headers: {
+              'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_MICROCMS_API_KEY as string,
+            },
+        });
         const data = await res.json();
-        setPost(data.post);
+        setPost(data);
         setLoading(false);
       };
       fetcher();
@@ -40,12 +44,27 @@ export default function PostsDetail() {
   return (
 <div>
   <div className={style["post-list-container"]}>
-    <img src="https://placehold.jp/800x400.png" alt="ダミー画像" />
+    {post.thumbnail ? (
+  <Image
+    src={post.thumbnail.url}
+    alt={post.title}
+    width={300}
+    height={160}
+    className={style.thumbnail}
+  />
+) : (
+  <Image
+    src="https://placehold.jp/300x160.png"
+    alt="ダミー画像"
+    width={300}
+    height={160}
+  />
+)}
     <div className={style["post-card-info"]}>
       <div className={style["create-data"]}>{new Date(post.createdAt).toLocaleDateString()}</div>
         <div className={style["post-categories"]}>
-          {post.categories.map((category) => (
-            <span key={category} className={style["post-tag"]}>{category}</span>
+          {post.categories?.map((category) => (
+            <span key={category.id} className={style["post-tag"]}>{category.name}</span>
               ))}
         </div>
     </div>
