@@ -50,22 +50,18 @@ export default function PostsIndex() {
           href={`/posts/${post.id}`}
           className={style["post-card"]}
         >
-          {post.thumbnail ? (
-            <Image
-              src={post.thumbnail.url}
-              alt={post.title}
-              width={300}
-              height={160}
-              className={style.thumbnail}
-            />
-          ) : (
-            <Image
-              src="https://placehold.jp/300x160.png"
-              alt="ダミー画像"
-              width={300}
-              height={160}
-            />
-          )}
+          <Image
+            src={
+              post.thumbnail
+                ? post.thumbnail.url
+                : "https://placehold.jp/300x160.png"
+            }
+            alt={post.thumbnail ? post.title : "ダミー画像"}
+            width={300}
+            height={160}
+            className={style.thumbnail}
+          />
+
           <div className={style["post-card-info"]}>
             <div className={style["create-data"]}>
               {new Date(post.createdAt).toLocaleDateString()}
